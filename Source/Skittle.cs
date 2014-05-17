@@ -34,7 +34,7 @@ namespace KinectSkittles
 		{
 			Location = loc;
 			Scale = 1.0f;
-			AverageColor = new Averager<Vector3>(3, Vector3.Zero);
+			AverageColor = new Averager<Vector3>(5, Vector3.Zero);
 		}
 
 		/// <summary>

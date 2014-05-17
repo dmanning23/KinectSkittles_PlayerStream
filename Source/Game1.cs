@@ -71,7 +71,7 @@ namespace KinectSkittles
 			}
 
 			Resolution.SetDesiredResolution(ScreenX, ScreenY);
-			Resolution.SetScreenResolution(1280, 720, false);
+			Resolution.SetScreenResolution(1280, 720, true);
 
 			base.Initialize();
 		}
@@ -243,7 +243,58 @@ namespace KinectSkittles
 						}
 
 						//set the color
-						Color pixelColor = new Color(intensity, intensity, intensity);
+						Color pixelColor = Color.White;
+
+						// Color the all pixels associated with a player
+						switch (depthPixels[imageIndex].PlayerIndex)
+						{
+							case 0:
+							{
+								//no player
+								pixelColor = new Color(0, 0, 0);
+							}
+							break;
+							case 1:
+							{
+								pixelColor = new Color(intensity, 0, 0);
+							}
+							break;
+							case 2:
+							{
+								pixelColor = new Color(0, intensity, 0);
+							}
+							break;
+							case 3:
+							{
+								pixelColor = new Color(0, 0, intensity);
+							}
+							break;
+							case 4:
+							{
+								pixelColor = new Color(intensity, intensity, 0);
+							}
+							break;
+							case 5:
+							{
+								pixelColor = new Color(intensity, 0, intensity);
+							}
+							break;
+							default:
+							{
+								// To convert to a byte, we're discarding the most-significant
+								// rather than least-significant bits.
+								// We're preserving detail, although the intensity will "wrap."
+								// Values outside the reliable depth range are mapped to 0 (black).
+
+								// Note: Using conditionals in this loop could degrade performance.
+								// Consider using a lookup table instead when writing production code.
+								// See the KinectDepthViewer class used by the KinectExplorer sample
+								// for a lookup table example.
+								pixelColor = new Color(0, intensity, intensity);
+							}
+							break;
+						}
+
 						Skittles[pixelIndex].AverageColor.Add(pixelColor.ToVector3());
 						Skittles[pixelIndex].Scale = scale;
 					}
