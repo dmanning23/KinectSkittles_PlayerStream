@@ -1,0 +1,6 @@
+[submodule "externals/AverageBuddy"]
+	path = externals/AverageBuddy
+	url = git@github.com:dmanning23/AverageBuddy.git
+[submodule "externals/ResolutionBuddy"]
+	path = externals/ResolutionBuddy
+	url = git@github.com:dmanning23/ResolutionBuddy.git
