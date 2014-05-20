@@ -14,7 +14,7 @@ namespace KinectSkittles
 		/// <summary>
 		/// The color to draw this dude... add a bunch of colors and average them out
 		/// </summary>
-		public Averager<Vector3> AverageColor { get; set; }
+		public Averager<Vector4> AverageColor { get; set; }
 
 		/// <summary>
 		/// The location to draw this dude
@@ -34,7 +34,7 @@ namespace KinectSkittles
 		{
 			Location = loc;
 			Scale = 1.0f;
-			AverageColor = new Averager<Vector3>(5, Vector3.Zero);
+			AverageColor = new Averager<Vector4>(5, Vector4.Zero);
 		}
 
 		/// <summary>

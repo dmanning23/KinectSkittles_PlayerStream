@@ -170,7 +170,7 @@ namespace KinectSkittles
 			// Calculate Proper Viewport according to Aspect Ratio
 			Resolution.ResetViewport();
 
-			spriteBatch.Begin(SpriteSortMode.Immediate,
+			spriteBatch.Begin(SpriteSortMode.Deferred,
 			BlendState.AlphaBlend,
 			null, null, null, null,
 			Resolution.TransformationMatrix());
@@ -295,7 +295,9 @@ namespace KinectSkittles
 							break;
 						}
 
-						Skittles[pixelIndex].AverageColor.Add(pixelColor.ToVector3());
+						pixelColor.A = intensity;
+
+						Skittles[pixelIndex].AverageColor.Add(pixelColor.ToVector4());
 						Skittles[pixelIndex].Scale = scale;
 					}
 				}
