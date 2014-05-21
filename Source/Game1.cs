@@ -238,7 +238,7 @@ namespace KinectSkittles
 						float scale = 0;
 						if (depth >= minDepth && depth <= maxDepth)
 						{
-							intensity = (byte)((depth * byte.MaxValue) / depthDelta);
+							intensity = (byte)(byte.MaxValue - ((depth * byte.MaxValue) / depthDelta));
 							scale = 3.0f - ((depth * 3.0f) / depthDelta);
 						}
 
@@ -295,7 +295,7 @@ namespace KinectSkittles
 							break;
 						}
 
-						pixelColor.A = intensity;
+						pixelColor.A = 255;
 
 						Skittles[pixelIndex].AverageColor.Add(pixelColor.ToVector4());
 						Skittles[pixelIndex].Scale = scale;
