@@ -40,17 +40,19 @@ namespace KinectSkittles
 		private const int CellsX = ScreenX / CellSize;
 		private const int CellsY = ScreenY / CellSize;
 
+		IResolution _resolution;
+
 		#endregion //Members
 
 		#region Methods
-		
+
 		public Game1()
 		{
 			graphics = new GraphicsDeviceManager(this);
 			Content.RootDirectory = "Content";
 			Skittles = new List<Skittle>();
 
-			Resolution.Init(ref graphics);
+			_resolution = new ResolutionComponent(this, graphics, new Point(1280, 720), new Point(1280, 720), false, false);
 		}
 
 		/// <summary>
@@ -69,9 +71,6 @@ namespace KinectSkittles
 					Skittles.Add(new Skittle(new Rectangle(i, j, CellSize, CellSize)));
 				}
 			}
-
-			Resolution.SetDesiredResolution(ScreenX, ScreenY);
-			Resolution.SetScreenResolution(1280, 720, true);
 
 			base.Initialize();
 		}
